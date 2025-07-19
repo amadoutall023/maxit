@@ -45,6 +45,9 @@ private TransactionService $transactionService;
     
     }
   
+public function createCompteEpargne(){
+    $this->render('compte/form2.php');
+}
 
 
 

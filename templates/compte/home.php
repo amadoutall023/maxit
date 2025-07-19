@@ -40,8 +40,8 @@
                                     </div>
                                     <div>
                                         <select class="bg-white bg-opacity-90 border border-gray-300 rounded-full px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-orange-500">
-                                            <option>Principal</option>
-                                            <option>Épargne</option>
+                                            <option><a href="/comptePrincipal">Principale</a></option>
+                                            <option><a href="/addCompte">Epargne</a></option>
                                         </select>
                                     </div>
                                 </div>

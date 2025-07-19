@@ -31,4 +31,9 @@ $routes = [
         'controller' => SecurityController::class, 
         'method' => 'logout'
     ],
+
+    "/addCompte" => [
+        'controller' => CompteController::class,
+        'method' => 'createCompteEpargne'
+    ],
 ];

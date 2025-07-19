@@ -17,7 +17,7 @@
                 <!-- Menu Items -->
                 <nav class="flex-1 p-4">
                     <div class="space-y-2">
-                        <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg p-3 transition-colors">
+                        <a href="/addCompte" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg p-3 transition-colors">
                             <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
                                 <span class="text-white text-xs font-bold">+</span>
                             </div>
