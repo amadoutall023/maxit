@@ -22,11 +22,11 @@ class CompteController extends AbstractController{
 
     public function __construct(){
            parent::__construct();
-          $this->validator = App::getDependency('core','validator');
-          $this->securityService = App::getDependency('services', 'securityServ');
-          $this->imageService = App::getDependency('core', 'imageServ');
-          $this->compteService = \App\Core\App::getDependency('services', 'compteServ');
-          $this->transactionService = App::getDependency('services', 'transactionServ');
+          $this->validator = App::getDependency('validator');
+          $this->securityService = App::getDependency('securityServ');
+          $this->imageService = App::getDependency('imageServ');
+          $this->compteService = \App\Core\App::getDependency('compteServ');
+          $this->transactionService = App::getDependency('transactionServ');
 
     }
 

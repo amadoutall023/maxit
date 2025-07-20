@@ -17,8 +17,8 @@ class CompteService{
         return self::$instance;
     }
     public function __construct(){
-        $this->compteRepository = App::getDependency('repositories', 'compteRepo');
-        $this->userRepository = App::getDependency('repositories', 'usersRepo');
+        $this->compteRepository = App::getDependency('compteRepo');
+        $this->userRepository = App::getDependency('usersRepo');
     }
 
 //     public function creerComptePrincipal(array $userData, array $compteData): bool|string {

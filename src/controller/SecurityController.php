@@ -18,8 +18,8 @@ class SecurityController extends AbstractController{
     public function __construct(){
         parent::__construct();
         $this->layout = 'security';
-        $this->securityService = App::getDependency('services', 'securityServ');
-        $this->validator = App::getDependency('core','validator');
+        $this->securityService = App::getDependency('securityServ');
+        $this->validator = App::getDependency('validator');
     }
     public function index(){
         $this->unset("errors");

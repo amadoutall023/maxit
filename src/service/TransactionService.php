@@ -17,9 +17,9 @@ class TransactionService{
         return self::$instance;
     }
     public function __construct(){
-        $this->compteRepository = App::getDependency('repositories', 'compteRepo');
-        $this->userRepository = App::getDependency('repositories', 'usersRepo');
-        $this->transactionRepository = App::getDependency('repositories', 'transactionRepo');
+        $this->compteRepository = App::getDependency('compteRepo');
+        $this->userRepository = App::getDependency('usersRepo');
+        $this->transactionRepository = App::getDependency('transactionRepo');
     }
     public function getTransactionsByUserId($id_user){
         return $this->transactionRepository->selectByClient($id_user);
