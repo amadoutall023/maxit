@@ -13,16 +13,17 @@ class Database{
       private function __construct() {
 
 
- $user='postgres';
- $password='EFVZsJafxazeGwjcWjEIamIonOLNJUCm';
-  $dsn='pgsql:host=34.1.231.146;port=29546;dbname=railway';
+$user ='postgres';
+        $password = 'EFVZsJafxazeGwjcWjEIamIonOLNJUCm';
+        $dsn = 'pgsql:host=34.1.231.146;port=29546;dbname=railway';
+
 
         try {
            
             $this->connection = new PDO(
-              $user,
-              $password,
               $dsn,
+              $user ,
+              $password,
               [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
