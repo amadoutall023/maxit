@@ -17,8 +17,7 @@ class Router{
         return self::$instance;
     }
 
-
-    public static function resolve($uris){
+ public static function resolve($uris){
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -30,15 +29,14 @@ class Router{
             $route = $uris[$currentUri];
             $controllerClass = $route['controller'];
             $method = $route['method'];
-            $middlewares = $route['middlewares'] ?? null;
-
-            runMiddleware($middlewares);
-
-            $controller = new $controllerClass();
+            $middlewares = $route['middlewares'] ?? [];
+            
+            runMiddleWare($middlewares);
+           
+            $controller = App::get($controllerClass);
             $controller->$method();
         } else {
-            // $errorController = new Error404Controller();
-            // $errorController->index();
+           
         }
     }
 }

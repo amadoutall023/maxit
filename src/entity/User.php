@@ -232,26 +232,26 @@ class User extends AbstractEntity{
     }
 
     public static function toObject(array $data):static{
-        $data['numeroCNI'] = $data['numeroCNI'] ?? '';
-         $data['photoIdentite'] = $data['photoIdentite'] ?? '';
-        return new static(
-            $data['id'],
-            $data['nom'],
-            $data['prenom'],
-            $data['login'],
-            $data['password'],
-            $data['adresse'],
-            $data['numeroCNI'],
-            $data['photoIdentite']
+        $data['numerocarteidentite'] = $data['numerocarteidentite'] ?? '';
+        $data['photoidentite'] = $data['photoidentite'] ?? '';
+        $data['numero'] = $data['numero'] ?? '';
+        
+        $user = new static(
+            $data['id'] ?? 0,
+            $data['nom'] ?? '',
+            $data['prenom'] ?? '',
+            $data['login'] ?? '',
+            $data['password'] ?? '',
+            $data['adresse'] ?? '',
+            $data['numerocarteidentite'],
+            $data['photoidentite']
         );
-        if(isset($data['user_type__id'])){
-            $typeUser = new TypeUser();
-            $typeUser->setid($data['user_type__id']);
-            if(isset($data['user_type_libelle'])){
-                $typeUser->setLibelle($data['user_type_libelle']);
-            }
+        
+        if(isset($data['numero'])){
+            $user->numeros = [$data['numero']];
         }
-
+        
+        return $user;
     }
 
     public function toArray(){

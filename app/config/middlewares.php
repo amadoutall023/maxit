@@ -1,35 +1,18 @@
 <?php
 
-function isLoggedIn(): bool
-{
-    return isset($_SESSION['user']);
-}
-
-function isVendeur(): bool
-{
-    return isset($_SESSION['user']) && $_SESSION['user']['typePerson'] === 'VENDEUR';
-}
-
-function isClient(): bool
-{
-    return isset($_SESSION['user']) && $_SESSION['user']['typePerson'] === 'CLIENT';
-}
-
-function runMiddleware($middlewares): void
-{
-    if (!$middlewares) {
-        return;
-    }
-
+// Fonction pour exécuter les middlewares
+function runMiddleWare(array $middlewares): void {
     foreach ($middlewares as $middleware) {
-        if (!function_exists($middleware)) {
-            header("Location:" . $_ENV['APP_URL']);
-            exit;
+        // Si le middleware est une fonction
+        if (is_callable($middleware)) {
+            $middleware();
         }
-        
-        if (!$middleware()) {
-            header("Location:" . $_ENV['APP_URL']);
-            exit;
+        // Si le middleware est une classe
+        elseif (is_string($middleware) && class_exists($middleware)) {
+            $middlewareInstance = new $middleware();
+            if (method_exists($middlewareInstance, 'handle')) {
+                $middlewareInstance->handle();
+            }
         }
     }
 }

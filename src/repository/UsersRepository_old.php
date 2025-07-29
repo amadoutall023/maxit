@@ -8,6 +8,7 @@ use PDO;
 
 class UsersRepository extends AbstractRepository{
 
+
     private static UsersRepository|null $instance = null;
 
     public static function getInstance():UsersRepository{
@@ -24,10 +25,8 @@ class UsersRepository extends AbstractRepository{
     private string $table = '"User"';
 
     public function selectAll(){}
-     
-    public function insert(array $userData){
-        $sql = "INSERT INTO $this->table (nom, prenom, login, password, typeuser, adresse, numero, numerocarteidentite, photoidentite) 
-                VALUES (:nom, :prenom, :login, :password, :typeUser, :adresse, :numero, :numeroCarteIdentite, :photoIdentite)";
+     public function insert(array $userData){
+        $sql = "INSERT INTO $this->table (nom, prenom,login, password, adresse, numeros, numeroCNI, photoIdentite, type_user_id) values (:nom, :prenom, :login, :password, :adresse, :numeros, :numeroCNI, :photoIdentite, :type_user_id)";
         $stmt = $this->pdo->prepare($sql);
         $result = $stmt->execute($userData);
         
@@ -38,12 +37,14 @@ class UsersRepository extends AbstractRepository{
         }
      }
 
-     public function selectByLoginAndPassword(string $login, string $password): null|User{
+
+
+     public function selectByLoginAndPassword(string $login, string $passwors): null|User{
         $query = "SELECT * FROM $this->table WHERE login = :login AND password = :password";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([
             'login' => $login,
-            'password' => $password
+            'password' => $passwors
         ]);
         
         $result = $stmt->fetch();
@@ -55,13 +56,16 @@ class UsersRepository extends AbstractRepository{
     }
 
     public function selectByLogin(string $login): ?User {
-        $query = "SELECT id, nom, prenom, login, password, adresse, numero, numerocarteidentite, photoidentite, typeuser
-                  FROM $this->table WHERE login = :login";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['login' => $login]);
-        $result = $stmt->fetch();
-        return $result ? User::toObject($result) : null;
-    }
+    $query = "SELECT id, nom, prenom, login, password, adresse, numero, numeroCarteIdentite,photoIdentite, typeUser
+FROM $this->table WHERE login = :login
+";
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute(['login' => $login]);
+    $result = $stmt->fetch();
+    return $result ? User::toObject($result) : null;
+}
+
+
 
      public function update(int $id, array $data){}
      public function delete(int $id){}

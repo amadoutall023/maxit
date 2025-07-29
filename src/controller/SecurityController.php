@@ -18,8 +18,8 @@ class SecurityController extends AbstractController{
     public function __construct(){
         parent::__construct();
         $this->layout = 'security';
-        $this->securityService = App::getDependency('securityServ');
-        $this->validator = App::getDependency('validator');
+        $this->securityService = App::get('securityServ');
+        $this->validator = App::get('validator');
     }
     public function index(){
         $this->unset("errors");
@@ -42,11 +42,10 @@ class SecurityController extends AbstractController{
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        $this->validator->isEmpty('email', $login);
+        $this->validator->isEmpty('login', $login);
         $this->validator->isEmpty('password', $password);
-        $this->validator->minLength('email', $login, 4, "L'email doit contenir au moins 4 caractères");
+        $this->validator->minLength('login', $login, 4, "Le login doit contenir au moins 4 caractères");
         $this->validator->minLength('password', $password, 4, "Le mot de passe doit contenir au moins 4 caractères");
-        $this->validator->isEmail('email', $login);
        
 
         $validatorForm = $this->validator->isValid();
@@ -54,7 +53,7 @@ class SecurityController extends AbstractController{
         $user = $this->securityService->seConnecter($login, $password);  
          if($user){
              $this->session->set("user", $user->toArray());
-            header("Location:". $_ENV['APP_URL']. "/compte");
+            header("Location: /compte");
             exit();
          }else{
             $this->validator->addError('password', "Identifiant incorrect");

@@ -1,5 +1,6 @@
-<?php var_dump($transaction)?>
-         <div class="flex h-screen"> 
+
+
+<div class="flex h-screen"> 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col w-[100%] h-screen overflow-hidden">
             <!-- Header -->
@@ -52,7 +53,9 @@
                                     <svg class="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                     </svg>
-                                    <span class="text-3xl  font-bold text-gray-800"><?= $compte[0]['solde']; ?>FCFA</span>
+                                 <span class="text-3xl font-bold text-gray-800">
+    <?= isset($comptes[0]) ? $comptes[0]->getSolde() : 0; ?> FCFA
+</span>
                                 </div>
                             </div>
                             
@@ -93,119 +96,38 @@
                     <!-- Transaction History -->
                  <div class="max-h-96 overflow-y-auto divide-y divide-gray-100">
 
+<div class="max-h-96 overflow-y-auto divide-y divide-gray-100">
 
-                        <div class="flex items-center justify-between p-6 border-b border-gray-100">
-                            <h3 class="text-xl font-semibold text-gray-800">Historique</h3>
-                            <button class="text-gray-500 hover:text-orange-500 flex items-center space-x-2 transition-colors">
-                                <span>Voir plus</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </button>
-                        </div>
+<?php if (!empty($transactions)): ?>
+    <?php foreach (array_slice($transactions, 0, 4) as $transaction): ?>
+        <div class="transaction-item p-6 rounded-lg mx-3 my-2">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-medium text-gray-800 text-lg"><?= htmlspecialchars($transaction->getCompteId()) ?></div>
+                        <div class="text-sm text-gray-500"><?= htmlspecialchars($transaction->getTypetransaction()) ?></div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="font-semibold text-gray-800 text-lg"><?= htmlspecialchars($transaction->getMontant()) ?> FCFA</div>
+                    <div class="text-sm text-gray-500"><?= htmlspecialchars($transaction->getDate()) ?></div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="p-6 text-gray-500">Aucune transaction trouvée.</div>
+<?php endif; ?>
+
+</div>
+                      
                         
-                        <div class="divide-y divide-gray-100">
-                            <div class="transaction-item p-6 rounded-lg mx-3 my-2">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800 text-lg">781716376</div>
-                                            <div class="text-sm text-gray-500"><?= $transaction[0]['typetransaction']; ?></div>
-                                          
-
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="font-semibold text-gray-800 text-lg"><?= $transaction[0]['montant']; ?>fcfa</div>
-                                        <div class="text-sm text-gray-500"><?= $transaction[0]['date']; ?></</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="transaction-item p-6 rounded-lg mx-3 my-2">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800 text-lg">781716376</div>
-                                            <div class="text-sm text-gray-500">Transfert sortant</div>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="font-semibold text-gray-800 text-lg">3000 fcfa</div>
-                                        <div class="text-sm text-gray-500">05/09/2025</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="transaction-item p-6 rounded-lg mx-3 my-2">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800 text-lg">781716376</div>
-                                            <div class="text-sm text-gray-500">Transfert sortant</div>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="font-semibold text-gray-800 text-lg">3000 fcfa</div>
-                                        <div class="text-sm text-gray-500">05/09/2025</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="transaction-item p-6 rounded-lg mx-3 my-2">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800 text-lg">781716376</div>
-                                            <div class="text-sm text-gray-500">Transfert sortant</div>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="font-semibold text-gray-800 text-lg">3000 fcfa</div>
-                                        <div class="text-sm text-gray-500">05/09/2025</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="transaction-item p-6 rounded-lg mx-3 my-2">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="font-medium text-gray-800 text-lg">781716376</div>
-                                            <div class="text-sm text-gray-500">Transfert sortant</div>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="font-semibold text-gray-800 text-lg">3000 fcfa</div>
-                                        <div class="text-sm text-gray-500">05/09/2025</div>
-                                    </div>
-                                </div>
-                            </div>
+                  
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
-       <div class="bg-black w-64 flex-shrink-0">
+
+<div class="bg-black w-64 flex-shrink-0">
             <div class="flex flex-col h-full">
                 <!-- User Profile -->
                 <div class="p-6 border-b border-gray-600">
@@ -21,11 +22,24 @@
                             <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
                                 <span class="text-white text-xs font-bold">+</span>
                             </div>
-                            <span>Nouveau</span>
+                            <span>creer C secondaire</span>
                         </a>
                     </div>
                 </nav>
-                
+                  <nav class="flex-1 p-4">
+                    <div class="space-y-2">
+                        <a href="/comptes-secondaires" class="flex items-center space-x-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg p-3 transition-colors">
+                            <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">+</span>
+                            </div>
+                            <span>Mes comptes</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="my-6">
+  
+</div>
+
                 <!-- Account Switch -->
                 <div class="p-4 border-t border-gray-600">
                     <button class="w-full text-left text-orange-500 border border-orange-500 rounded-lg px-4 py-2 hover:bg-orange-500 hover:text-white transition-colors">

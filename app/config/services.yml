@@ -19,4 +19,12 @@ repositories:
   usersRepo: App\Repository\UsersRepository
   compteRepo: App\Repository\CompteRepository
   transactionRepo: App\Repository\TransactionRepository
- 
+
+# Ajout des bindings pour résolution par nom complet de classe
+bindings:
+  App\Repository\TransactionRepository: App\Repository\TransactionRepository
+  App\Repository\CompteRepository: App\Repository\CompteRepository
+  App\Repository\UsersRepository: App\Repository\UsersRepository
+  App\Service\SecurityService: App\Service\SecurityService
+  App\Service\CompteService: App\Service\CompteService
+  App\Service\TransactionService: App\Service\TransactionService

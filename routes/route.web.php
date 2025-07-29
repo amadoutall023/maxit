@@ -36,4 +36,12 @@ $routes = [
         'controller' => CompteController::class,
         'method' => 'createCompteEpargne'
     ],
+      "/storeEpargne" => [
+        'controller' => CompteController::class,
+        'method' => 'storeEpargne'
+    ],
+    "/comptes-secondaires" => [
+        'controller' => CompteController::class,
+        'method' => 'liteComptesSecondaires'
+    ],
 ];

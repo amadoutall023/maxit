@@ -2,13 +2,14 @@
 namespace App\Service;
 use App\Repository\CompteRepository;
 use App\Repository\UsersRepository;
+use App\Repository\TransactionRepository; // Add this missing import
 use App\Core\App;
 
 class CompteService{
     private CompteRepository $compteRepository;
     private UsersRepository $userRepository;
+    private TransactionRepository $transactionRepository; // Fix property name casing
     private static CompteService|null $instance = null;
-
 
     public static function getInstance(): CompteService {
         if (self::$instance == null) {
@@ -16,9 +17,15 @@ class CompteService{
         }
         return self::$instance;
     }
-    public function __construct(){
-        $this->compteRepository = App::getDependency('compteRepo');
-        $this->userRepository = App::getDependency('usersRepo');
+    
+    public function __construct(
+        CompteRepository $compteRepository,
+        UsersRepository $userRepository,
+        TransactionRepository $transactionRepository,
+    ){
+       $this->compteRepository = $compteRepository;
+        $this->userRepository = $userRepository;
+        $this->transactionRepository = $transactionRepository;
     }
 
 //     public function creerComptePrincipal(array $userData, array $compteData): bool|string {
@@ -86,6 +93,9 @@ public function creerComptePrincipal(array $userData, $numeroTelephone): bool|st
     }
     public function getCompteByUserId($userId){
         return $this->compteRepository->selectByClient($userId);
+    }
+    public function getAllComptes(){
+        return $this->compteRepository->selectAll();
     }
  
 

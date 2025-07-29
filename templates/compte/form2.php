@@ -1,4 +1,3 @@
-
 <body class="bg-gradient-to-br from-blue-600 to-blue-800 min-h-screen p-4">
     <!-- Header -->
     <div class="text-center text-white mb-8">
@@ -16,7 +15,7 @@
             </div>
             
             <div class="p-6">
-                <form method="post" action="#" class="space-y-6">
+                <form method="post" action="/storeEpargne" class="space-y-6">
                     <!-- Champ Numéro -->
                     <div>
                         <label for="numero" class="block text-sm font-semibold text-gray-700 mb-2">
@@ -47,6 +46,9 @@
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                         >
                     </div>
+
+                    <!-- Champ caché pour le type de compte -->
+                    <input type="hidden" name="type_compte" value="epargne">
 
                     <!-- Boutons -->
                     <div class="flex gap-3">
@@ -166,3 +168,4 @@
             </div>
         </div>
     </div>
+</body>

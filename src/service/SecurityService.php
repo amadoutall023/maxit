@@ -21,8 +21,8 @@ class SecurityService{
 
 
     public function __construct(){
-        $this->userRepository = App::getDependency('usersRepo');
-        $this->compteRepository = App::getDependency('compteRepo');
+        $this->userRepository = App::get('usersRepo');
+        $this->compteRepository = App::get('compteRepo');
     }
 
     // public function seConnecter($login, $password):User|null{
@@ -31,12 +31,12 @@ class SecurityService{
     // }
 
     public function seConnecter(string $login, string $password): ?User {
-    return $this->userRepository->selectByLoginAndPassword($login, $password);
-    // if ($user && password_verify($password, $user->getPassword())) {
-    //     return $user;
-    // }
-    // return null;
-}
+        $user = $this->userRepository->selectByLogin($login);
+        if ($user && password_verify($password, $user->getPassword())) {
+            return $user;
+        }
+        return null;
+    }
 
 
     public function creerComptePrincipal(array $userData, array $compteData): bool|string {
