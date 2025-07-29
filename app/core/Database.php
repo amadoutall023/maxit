@@ -11,14 +11,18 @@ class Database{
     private  static $instance = null;
 
       private function __construct() {
-        
+
+
+ $user='postgres';
+ $password='EFVZsJafxazeGwjcWjEIamIonOLNJUCm';
+  $dsn='pgsql:host=34.1.231.146;port=29546;dbname=railway';
 
         try {
            
             $this->connection = new PDO(
-              dsn,
-              DB_USER,
-              DB_PASSWORD,
+              $user,
+              $password,
+              $dsn,
               [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
